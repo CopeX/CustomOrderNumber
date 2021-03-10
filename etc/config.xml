@@ -21,7 +21,7 @@
     <default>
         <ordernumber>
             <order>
-                <enable>1</enable>
+                <enable>0</enable>
                 <format>ORD-{mm}{yy}-{counter}-{storeId}</format>
                 <start>1</start>
                 <increment>1</increment>
@@ -29,19 +29,19 @@
                 <reset>0</reset>
             </order>
             <invoice>
-                <enable>1</enable>
+                <enable>0</enable>
                 <same_order>1</same_order>
                 <replace>ORD</replace>
                 <replace_with>INV</replace_with>
             </invoice>
             <shipment>
-                <enable>1</enable>
+                <enable>0</enable>
                 <same_order>1</same_order>
                 <replace>ORD</replace>
                 <replace_with>SHI</replace_with>
             </shipment>
             <creditmemo>
-                <enable>1</enable>
+                <enable>0</enable>
                 <same_order>1</same_order>
                 <replace>ORD</replace>
                 <replace_with>CRE</replace_with>
