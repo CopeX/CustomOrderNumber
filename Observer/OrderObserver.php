@@ -79,13 +79,10 @@ class OrderObserver implements ObserverInterface
      * @return void
      */
     public function execute(Observer $observer)
-    {   
-        if ($this->helper->isOrderEnable()) {
-            $storeId = $this->storeManager->getStore()->getStoreId();
-            $sessionId = $this->session->getStoreId();
-            if (isset($sessionId)) {
-                $storeId = $sessionId;
-            }
+    {
+        $orderInstance = $observer->getOrder();
+        $storeId = $orderInstance->getStoreId();
+        if ($this->helper->isOrderEnable($storeId)) {
             $format = $this->helper->getOrderFormat($storeId);
             $startValue = $this->helper->getOrderStart($storeId);
             $step = $this->helper->getOrderIncrement($storeId);
@@ -119,7 +116,6 @@ class OrderObserver implements ObserverInterface
                     }
                 } while ($unique == '0');
             }
-            $orderInstance = $observer->getOrder();
             $orderInstance->setIncrementId($result);
         }           
     }

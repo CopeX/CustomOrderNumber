@@ -33,31 +33,47 @@
                 <field id="format" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Number Format</label>
                     <comment><![CDATA[You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers**}, {rndLetters**}, {rndAlphanumeric**}.<br>Example: ORD-{mm}{yy}-{counter}-{storeId}-{rndNumbers03} => ORD-0517-00081-1-999.]]></comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field>
                 <field id="start" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Start Counter From</label>
                     <validate>validate-greater-than-zero required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field>
                 <field id="increment" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Counter Increments</label>
                     <comment><![CDATA[If the last counter number is 005 and you fill in this field number “4”, the next counter number will be 009.<br><strong>Note: You should reset counter after setting new increments.</strong>]]></comment>
                     <validate>validate-greater-than-zero required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field>
                 <field id="padding" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Number Counter Padding</label>
                     <comment><![CDATA[Total number of digits of the {counter} variable. If you set this field is 4 and the counter is 23, the counter number displayed will be 0023.]]></comment>
                     <validate>validate-greater-than-zero required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field> 
                 <field id="individual" translate="label comment" type="select" sortOrder="6" showInDefault="0" showInWebsite="0" showInStore="1">
                     <label>Use Different Counter Numbers for Different Store Views</label>
                     <comment><![CDATA[Choose “Yes” to count independently for each store view.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field>
                 <field id="reset" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Reset Counter Number</label>
                     <source_model>Magenuts\CustomOrderNumber\Model\Config\Source\Frequency</source_model>
                     <depends>
                         <field id="individual">1</field>
+                        <field id="enable">1</field>
                     </depends> 
                 </field>
                 <field id="reset_now" translate="label comment" type="button" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -66,6 +82,7 @@
                     <frontend_model>Magenuts\CustomOrderNumber\Block\System\Config\ResetOrder</frontend_model>  
                     <depends>
                         <field id="individual">1</field>
+                        <field id="enable">1</field>
                     </depends>             
                 </field>
             </group>
@@ -79,12 +96,16 @@
                     <label>Similar to Order Number</label>
                     <comment><![CDATA[Decide to use the order number as the invoice number or not.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field>
                 <field id="replace" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Replace Part of Order Number</label>
                     <comment><![CDATA[You can not replace variables. If format of order number is ORD-{count}-{mm}{dd}, you only can replace ORD- part.]]></comment>
                     <depends>
                         <field id="same_order">1</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
                 <field id="replace_with" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -92,6 +113,7 @@
                     <comment><![CDATA[Fill in this bank the content that you want to replace with the content in Replace Part of Order Number.]]></comment>
                     <depends>
                         <field id="same_order">1</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
                 <field id="format" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -99,12 +121,14 @@
                     <comment><![CDATA[You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers**}, {rndLetters**}, {rndAlphanumeric**}.<br>Example: INV-{mm}{yy}-{counter}-{storeId}-{rndNumbers03} => INV-0517-00081-1-999.]]></comment>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
                 <field id="start" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Start Counter From</label>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                     <validate>validate-greater-than-zero required-entry</validate>
                 </field>
@@ -113,6 +137,7 @@
                     <comment><![CDATA[If the last counter number is 005 and you fill in this field number “4”, the next counter number will be 009.<br><strong>Note: You should reset counter after setting new increments.</strong>]]></comment>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                     <validate>validate-greater-than-zero required-entry</validate>
                 </field>
@@ -121,6 +146,7 @@
                     <comment><![CDATA[Total number of digits of the {counter} variable. If you set this field is 4 and the counter is 23, the counter number displayed will be 0023.]]></comment>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                     <validate>validate-greater-than-zero required-entry</validate>
                 </field>
@@ -130,6 +156,7 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
                 <field id="reset" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -137,6 +164,7 @@
                     <depends>
                         <field id="same_order">0</field>
                         <field id="individual">1</field>
+                        <field id="enable">1</field>
                     </depends>
                     <source_model>Magenuts\CustomOrderNumber\Model\Config\Source\Frequency</source_model>
                 </field>
@@ -147,6 +175,7 @@
                     <depends>
                         <field id="same_order">0</field>
                         <field id="individual">1</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
             </group>
@@ -160,12 +189,16 @@
                     <label>Similar to Order Number</label>
                     <comment><![CDATA[Decide to use the order number as the shipment number or not.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field>
                 <field id="replace" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <comment><![CDATA[You can not replace variables. If format of order number is ORD-{count}-{mm}{dd}, you only can replace ORD- part.]]></comment>
                     <label>Replace Part of Order Number</label>
                     <depends>
                         <field id="same_order">1</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
                 <field id="replace_with" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -173,6 +206,7 @@
                     <label>Part of Oder Number is Replaced by</label>
                     <depends>
                         <field id="same_order">1</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
                 <field id="format" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -180,12 +214,14 @@
                     <comment><![CDATA[You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers**}, {rndLetters**}, {rndAlphanumeric**}.<br>Example: SHI-{mm}{yy}-{counter}-{storeId}-{rndNumbers03} => SHI-0517-00081-1-999.]]></comment>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
                 <field id="start" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Start Counter From</label>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                     <validate>validate-greater-than-zero required-entry</validate>
                 </field>
@@ -194,6 +230,7 @@
                     <comment><![CDATA[If the last counter number is 005 and you fill in this field number “4”, the next counter number will be 009.<br><strong>Note: You should reset counter after setting new increments.</strong>]]></comment>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                     <validate>validate-greater-than-zero required-entry</validate>
                 </field>
@@ -202,6 +239,7 @@
                     <comment><![CDATA[Total number of digits of the {counter} variable. If you set this field is 4 and the counter is 23, the counter number displayed will be 0023.]]></comment>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                     <validate>validate-greater-than-zero required-entry</validate>
                 </field>
@@ -211,6 +249,7 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
                 <field id="reset" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -218,6 +257,7 @@
                     <depends>
                         <field id="same_order">0</field>
                         <field id="individual">1</field>
+                        <field id="enable">1</field>
                     </depends>
                     <source_model>Magenuts\CustomOrderNumber\Model\Config\Source\Frequency</source_model>
                 </field>
@@ -228,6 +268,7 @@
                     <depends>
                         <field id="same_order">0</field>
                         <field id="individual">1</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
             </group>
@@ -241,12 +282,16 @@
                     <label>Similar to Order Number</label>
                     <comment><![CDATA[Decide to use the order number as the creditmemo number or not.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field>
                 <field id="replace" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Replace Part of Order Number</label>
                     <comment><![CDATA[You can not replace variables. If format of order number is ORD-{count}-{mm}{dd}, you only can replace ORD- part.]]></comment>
                     <depends>
                         <field id="same_order">1</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
                 <field id="replace_with" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -254,6 +299,7 @@
                     <comment><![CDATA[Fill in this bank the content that you want to replace with the content in Replace Part of Order Number.]]></comment>
                     <depends>
                         <field id="same_order">1</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
                 <field id="format" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -261,12 +307,14 @@
                     <comment><![CDATA[You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers**}, {rndLetters**}, {rndAlphanumeric**}.<br>Example: CRE-{mm}{yy}-{counter}-{storeId}-{rndNumbers03} => CRE-0517-00081-1-999.]]></comment>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
                 <field id="start" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Start Counter From</label>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                     <validate>validate-greater-than-zero required-entry</validate>
                 </field>
@@ -275,6 +323,7 @@
                     <comment><![CDATA[If the last counter number is 005 and you fill in this field number “4”, the next counter number will be 009.<br><strong>Note: You should reset counter after setting new increments.</strong>]]></comment>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                     <validate>validate-greater-than-zero required-entry</validate>
                 </field>
@@ -283,6 +332,7 @@
                     <comment><![CDATA[Total number of digits of the {counter} variable. If you set this field is 4 and the counter is 23, the counter number displayed will be 0023.]]></comment>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                     <validate>validate-greater-than-zero required-entry</validate>
                 </field>       
@@ -291,6 +341,7 @@
                     <comment><![CDATA[Choose “Yes” to count independently for each store view.]]></comment>
                     <depends>
                         <field id="same_order">0</field>
+                        <field id="enable">1</field>
                     </depends>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
@@ -299,6 +350,7 @@
                     <depends>
                         <field id="same_order">0</field>
                         <field id="individual">1</field>
+                        <field id="enable">1</field>
                     </depends>
                     <source_model>Magenuts\CustomOrderNumber\Model\Config\Source\Frequency</source_model>
                 </field>
@@ -309,6 +361,7 @@
                     <depends>
                         <field id="same_order">0</field>
                         <field id="individual">1</field>
+                        <field id="enable">1</field>
                     </depends>
                 </field>
             </group>
